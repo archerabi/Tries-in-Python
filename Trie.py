@@ -43,13 +43,20 @@ class Trie(object):
             currentNode = currentNode.children[c]
                          
     def printTree(self):
-        currentNode = self.root
-        while True:
-		print currentNode.children
+	nodestack = [self.root]
+        while len(nodestack) != 0:
+		currentNode = nodestack.pop()
+		values=""
         	for n in currentNode.children:
-        		print n.value
+			temp =  currentNode.children[n]
+        		values +=" "+temp.value
+			nodestack.append(temp)
+		print values
 
 trie = Trie()
 trie.addWord("w")
 trie.addWord("wo")
 trie.addWord("words")
+trie.addWord("tree")
+trie.addWord("trekking");
+trie.printTree()
