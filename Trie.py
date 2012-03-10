@@ -1,15 +1,14 @@
 
 class Node(object):
-    parent = None
-    value = None
-    children={}#contains a map with child characters as keys and their Node as values
-
+    def __init__(self):
+        self.children={}#contains a map with child characters as keys and their Node as values
 
 class Trie(object):
 
-    root = Node()
-    root.value = "/" 
-       
+    def __init__(self):
+        self.root = Node()
+        self.root.value = "/" 
+	
     def addWord(self,word):
         currentNode = self.root
         i = 0
@@ -41,7 +40,6 @@ class Trie(object):
             currentNode.children[c] = Node()
             currentNode.children[c].value = c
             currentNode.children[c].parent = currentNode
-	    currentNode.children[c].children = None
             currentNode = currentNode.children[c]
                          
     def printTree(self):
@@ -54,4 +52,4 @@ class Trie(object):
 trie = Trie()
 trie.addWord("w")
 trie.addWord("wo")
-#trie.printTree()
+trie.addWord("words")
