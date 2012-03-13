@@ -59,7 +59,9 @@ class Trie(object):
 			 startNode = startNode.children[c]
 		    except:
 	    		return []
-	    nodestack = [startNode]
+	    nodestack=[]
+	    for child in startNode.children:
+	    	nodestack.append(startNode.children[child])
 	    words=[]
 	    currentWord=""
 	    while len(nodestack) != 0:
