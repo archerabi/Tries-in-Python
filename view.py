@@ -1,5 +1,5 @@
 from PyQt4 import QtCore,QtGui
-from PyQt4.QtCore import Qt
+from PyQt4.QtCore import Qt,pyqtSignal
 import sys
 
 class TrieDemoView(QtGui.QWidget):
@@ -25,3 +25,10 @@ class TrieDemoView(QtGui.QWidget):
 		self.tabWidget.addTab(self.trieTab,"Trie")
 
 		self.vLayout.addWidget(self.tabWidget)
+
+		self.lineEdit.textChanged.connect(self.handleTextChanged)
+
+	def handleTextChanged(self,text):
+		self.textEntered.emit(self.lineEdit.text())
+
+	textEntered = pyqtSignal('QString')

@@ -12,12 +12,12 @@ class Trie(object):
     def addWord(self,word):
         currentNode = self.root
         i = 0
-        print "adding word '"+ word+"' to trie "
+        #print "adding word '"+ word+"' to trie "
         for c in word:
-            print "adding character " + c
+            #print "adding character " + c
             try:
                 currentNode = currentNode.children[c]
-		print "character "+c + " exists"
+		#print "character "+c + " exists"
             except:
                 self.createSubTree(word[i:len(word)],currentNode)
                 break
@@ -34,7 +34,7 @@ class Trie(object):
            
  
     def createSubTree(self,word,node):
-        print "creating subtree for " + word
+        #print "creating subtree for " + word
         currentNode = node
         for c in word:
             currentNode.children[c] = Node()
@@ -51,12 +51,25 @@ class Trie(object):
 			temp =  currentNode.children[n]
         		values +=" "+temp.value
 			nodestack.append(temp)
-		print values
 
-trie = Trie()
-trie.addWord("w")
-trie.addWord("wo")
-trie.addWord("words")
-trie.addWord("tree")
-trie.addWord("trekking");
-trie.printTree()
+    def getWordList(self,startingCharacters):
+	    startNode = self.root
+	    for c in startingCharacters:
+		    try:
+			 startNode = startNode.children[c]
+		    except:
+	    		return []
+	    nodestack = [startNode]
+	    words=[]
+	    currentWord=""
+	    while len(nodestack) != 0:
+		    currentNode = nodestack.pop()
+		    currentWord += currentNode.value
+		    if len (currentNode.children) == 0:
+			words.append(startingCharacters+currentWord)
+			currentWord = ""
+
+		    for n in currentNode.children:
+			    temp = currentNode.children[n]
+			    nodestack.append(temp)
+	    return words
