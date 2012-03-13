@@ -11,7 +11,10 @@ class TrieController():
 		if len (stringEntered)==0:
 			return
 		print "word list for " + stringEntered
-		print self.trie.getWordList(str(stringEntered))
+		text = ""
+		for word in  self.trie.getWordList(str(stringEntered)):
+			text += word + "\n"
+		self.view.setSuggestions(text)
 
 	def initTrie(self):
 		f = open("words.txt",'r')

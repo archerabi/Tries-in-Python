@@ -16,8 +16,11 @@ class TrieDemoView(QtGui.QWidget):
 		self.autoCompleteTab.setLayout(self.autoCompleteTabLayout)
 		self.lineEdit = QtGui.QLineEdit(self)
 		self.autoCompleteTabLayout.addWidget(self.lineEdit,0,Qt.AlignTop)
+		self.suggestionBox = QtGui.QTextEdit()
+		self.autoCompleteTabLayout.addWidget(self.suggestionBox,0,Qt.AlignTop)
 		self.tabWidget.addTab(self.autoCompleteTab,"Auto Complete")
-		
+		self.autoCompleteTabLayout.setSpacing(0)	
+
 		#create trie tab
 		self.trieTab = QtGui.QWidget()
 		self.trieTabLayout = QtGui.QVBoxLayout()
@@ -28,7 +31,11 @@ class TrieDemoView(QtGui.QWidget):
 
 		self.lineEdit.textChanged.connect(self.handleTextChanged)
 
+		
 	def handleTextChanged(self,text):
 		self.textEntered.emit(self.lineEdit.text())
 
 	textEntered = pyqtSignal('QString')
+
+	def setSuggestions(self,text):
+		self.suggestionBox.setText(text)
