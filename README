@@ -1,2 +1,12 @@
 This is a shot at learning python.
-Trie.py is an implementation of a Trie.
+Trie.py is an implementation of a Trie
+words.list contains a list of words. Each line is a word.
+
+To Run make sure you have PyQt installed and type , 
+python demo.py
+
+Start typing in the textBox to see a list of suggestions.
+
+TODO:
+Add flags to nodes , indicating that the path till that node is a word
+Draw the Trie 
